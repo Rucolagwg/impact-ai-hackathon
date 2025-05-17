@@ -5,52 +5,35 @@ using UnityEngine;
 public class Event_Game : EventBase
 {
 
-    bool isFadeINDone = false;
-    bool isFadeOutDone = false;
-    bool isEnd = false;
+    bool isGameEnd = false;
+
+    bool isFadeInEnd = false;
 
     public override void Enter(GameManager gm)
     {
-        StartCoroutine(FadeIN(gm));
+        StartCoroutine(StartSetup(gm));
     }
 
     public override void Execute(GameManager gm)
     {
-        if (isFadeINDone)
+        if (!isFadeInEnd)
             return;
 
-        //---- 끝내는 함수 ----
-
-        if(!isEnd)
-        {
-            isEnd = true;
-            StartCoroutine(FadeOut(gm));
-            return;
-        }
 
         
     }
 
     public override void Exit(GameManager gm)
     {
-
+        StartCoroutine(gm.fade.eFadeOut());
     }
-
-    IEnumerator FadeIN(GameManager gm)
+    
+    IEnumerator StartSetup(GameManager gm)
     {
-        yield return gm.fade.eFadeIN();
+        yield return StartCoroutine(gm.fade.eFadeIN());
 
-        isFadeINDone = true;
+        isFadeInEnd = true;
 
     }
-
-    IEnumerator FadeOut(GameManager gm)
-    {
-        yield return gm.fade.eFadeOut();
-
-        isFadeINDone = true;
-        gm.NextEvent();
-    }
-
 
 }

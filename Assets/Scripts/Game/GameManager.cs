@@ -27,21 +27,34 @@ public class GameManager : MonoBehaviour
 
     public Fade fade;
 
+    [SerializeField]
     List<EventBase> eventBases = new List<EventBase>();
     bool gameEnd = false;
 
-
+    [SerializeField]
     EventBase currentBase = null;
 
     // 0번 튜토리얼 1~12 이벤트 
+    [SerializeField]
     private int _currentEventnum = 0;
     public int currentEventNum { get { return _currentEventnum; } private set { _currentEventnum = value;  } }
+
+    //돈
+    public float Money = 1000000;
+
+
+    // txt 돈
+    [SerializeField]
+    TMP_Text txt_Money;
+
+    [SerializeField]
+    TMP_Text txt_Month;
+
 
     // 예: 게임 초기화
     private void Start()
     {
         Setup();
-        NextEvent();
     }
 
     private void Update()
@@ -52,29 +65,71 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    [ContextMenu("NextEvent")]
     public void NextEvent()
     {
         if (gameEnd)
             return;
 
+
+        StartCoroutine(eNextEvent());
+
+
+    }
+
+    public IEnumerator eNextEvent()
+    {
+
         _currentEventnum++;
+
+        print($"--------{_currentEventnum} NextEvent--------");
+
+
         
-        
-        if(currentEventNum >= eventBases.Count )
+
+
+        if (currentEventNum >= eventBases.Count)
         {
             //
             EndGame();
             gameEnd = true;
-            return;
+            yield return null;
+        }
+        else if(currentEventNum == 1)
+        {
+            // 튜토리얼
+
+            if (currentBase != null)
+                currentBase.Exit(this);
+
+            // fade 기다리기
+            yield return new WaitForSeconds(fade.fadeTime + 1f + 0.1f);
+
+            currentBase = eventBases[_currentEventnum];
+            currentBase.Enter(this);
+
+            
+        }
+        else
+        {
+
+            if (currentBase != null)
+                currentBase.Exit(this);
+
+            // fade 기다리기
+            yield return new WaitForSeconds(fade.fadeTime + 1f + 0.1f);
+
+            currentBase = eventBases[_currentEventnum];
+            currentBase.Enter(this);
+
+
         }
 
-        if (currentBase != null)
-            currentBase.Exit(this);
 
-        currentBase = eventBases[_currentEventnum];
-        currentBase.Enter(this);
+        print($"-------------------------------");
 
+
+        yield return null;
 
 
     }
@@ -99,12 +154,29 @@ public class GameManager : MonoBehaviour
             }
         }
 
-
+        currentBase = eventBases[0];
+        currentBase.Enter(this);
 
     }
 
     void EndGame()
     {
-
+        print("End게임 호출 됨");
     }
+
+    public void UpdateUIInfo()
+    {
+
+        if(txt_Money != null)
+        {
+            txt_Money.text = Money.ToString("F2");
+        }
+
+        if (txt_Month != null)
+        {
+            txt_Month.text = $"Month : {currentEventNum}";
+        }
+    }
+
+
 }

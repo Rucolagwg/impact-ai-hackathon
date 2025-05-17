@@ -17,7 +17,7 @@ public class Fade : MonoBehaviour
     [ContextMenu("FadeIn")]
     public void FadeIN()
     {
-        Txt_Fade.text = $"Month : {GameManager.Instance.currentEventNum}";
+        
 
         Txt_Fade.gameObject.SetActive(true);
         FadeImg.DOFade(0f, fadeTime).SetEase(ease_Fade);
@@ -30,37 +30,58 @@ public class Fade : MonoBehaviour
 
     public IEnumerator eFadeIN()
     {
+        print("eFadeIN 시작");
         Txt_Fade.gameObject.SetActive(true);
         FadeImg.DOFade(0f, fadeTime).SetEase(ease_Fade);
         Txt_Fade.DOFade(0f, fadeTime).SetEase(ease_Fade).OnComplete(() => {
             Txt_Fade.gameObject.SetActive(false);
 
         });
+        
 
         yield return new WaitForSeconds(fadeTime+0.1f);
+        print("eFadeIN 끝");
     }
 
     [ContextMenu("FadeOut")]
     public void FadeOut()
     {
-        FadeImg.DOFade(1f, fadeTime).SetEase(ease_Fade);
-        Txt_Fade.DOFade(1f, fadeTime).SetEase(ease_Fade).OnComplete(() => {
+        Txt_Fade.text = $"Month : {GameManager.Instance.currentEventNum}";
+
+        print($"Month : {GameManager.Instance.currentEventNum}");
+
+        FadeImg.DOFade(1f, fadeTime).SetEase(ease_Fade).OnComplete(() => {
             Txt_Fade.gameObject.SetActive(true);
             Txt_Fade.DOFade(1f, 1f).SetEase(ease_Fade);
 
-        }); ;
+        });
 
     }
 
     public IEnumerator eFadeOut()
     {
-        FadeImg.DOFade(1f, fadeTime).SetEase(ease_Fade);
-        Txt_Fade.DOFade(1f, fadeTime).SetEase(ease_Fade).OnComplete(() => {
+        print("eFadeOut 시작");
+
+        Txt_Fade.text = $"Month : {GameManager.Instance.currentEventNum}";
+
+        // print($"Month : {GameManager.Instance.currentEventNum}");
+
+        FadeImg.DOFade(1f, fadeTime).SetEase(ease_Fade).OnComplete(() => {
             Txt_Fade.gameObject.SetActive(true);
             Txt_Fade.DOFade(1f, 1f).SetEase(ease_Fade);
 
-        }); ;
-
+        });
+        
         yield return new WaitForSeconds(fadeTime +1f + 0.1f);
+        print("eFadeOut 끝");
+    }
+
+    public IEnumerator eTutoFadeOut()
+    {
+
+        FadeImg.gameObject.SetActive(true);
+        FadeImg.DOFade(1f, fadeTime).SetEase(ease_Fade);
+
+        yield return new WaitForSeconds(fadeTime + 1f + 0.1f);
     }
 }
