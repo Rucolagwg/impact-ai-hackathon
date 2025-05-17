@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Event_Tuto : EventBase
 {
+
+
+    bool isEventEnd = false;
+
     public override void Enter(GameManager gm)
     {
         print("튜토리얼 이벤트 시작");
@@ -11,13 +15,13 @@ public class Event_Tuto : EventBase
 
     public override void Execute(GameManager gm)
     {
-        gm.NextEvent();
-        return;
+
+        
     }
 
     public override void Exit(GameManager gm)
     {
         print("튜토리얼 이벤트 끝");
-
+        StartCoroutine(gm.fade.eFadeOut());
     }
 }
