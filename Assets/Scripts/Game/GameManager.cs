@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
     public Fade fade;
 
     // 0번 튜토리얼 1~12 이벤트 
-    int currentEventNum = 0;
+    private int _currentEventnum = 0;
+    public int currentEventNum { get { return _currentEventnum; } private set { _currentEventnum = value;  } }
 
     // 예: 게임 초기화
     private void Start()
@@ -55,23 +56,37 @@ public class GameManager : MonoBehaviour
         else if (currentEventNum > 12)
         {
             // 게임종료 함수
-
+            EventGameEnd();
             print("게임 종료 함수 실행!");
             return;
         }
 
-        NextEvent();
+
+
+        //Fade Out : 어두워짐
+        fade.FadeOut();
+
+
+
+        //FadeIN : 밝아짐
+        fade.FadeIN();
     }
 
     // 튜토리얼 함수
     void EventTutorial()
     {
 
+
+        currentEventNum++;
+        NextEvent();
+
     }
 
-    //
+    // 게임 종료 함수
     void EventGameEnd()
     {
+
+        
 
     }
 

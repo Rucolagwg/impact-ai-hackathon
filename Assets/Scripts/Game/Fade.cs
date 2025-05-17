@@ -17,13 +17,22 @@ public class Fade : MonoBehaviour
     [ContextMenu("FadeIn")]
     public void FadeIN()
     {
+        Txt_Fade.text = $"Month : {GameManager.Instance.currentEventNum}";
+
         Txt_Fade.gameObject.SetActive(true);
         FadeImg.DOFade(0f, fadeTime).SetEase(ease_Fade);
-        Txt_Fade.DOFade(0f, fadeTime).SetEase(ease_Fade).OnComplete(() =>{
+        Txt_Fade.DOFade(0f, fadeTime).SetEase(ease_Fade).OnComplete(() => {
             Txt_Fade.gameObject.SetActive(false);
-        
+
         });
 
+    }
+
+    public IEnumerator eFadeIN()
+    {
+
+
+        yield return null;
     }
 
     [ContextMenu("FadeOut")]
