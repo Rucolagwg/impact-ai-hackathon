@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Animator animator;
+
+
+    [ContextMenu("Victory")]
+    public void Ani_Victory()
     {
-        
+        animator.SetTrigger("Victory");
     }
 
-    // Update is called once per frame
-    void Update()
+
+    [ContextMenu("Defeat")]
+    public void Ani_Defeat()
     {
-        
+        animator.SetTrigger("Defeat");
     }
+
+
 }
