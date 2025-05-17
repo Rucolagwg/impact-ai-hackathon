@@ -19,10 +19,21 @@ public class UIManager : MonoBehaviour
     public TMP_Text txt_summaryChoice;
     public TMP_Text txt_summaryReason;
 
-    [Space(10)]
+    [Space(10), Header("Upper")]
     public TMP_Text txt_NewsHeaderMini;
     public TMP_Text txt_FullTextMini;
     public TMP_Text txt_FullTextMain;
+
+    [Space(10), Header("Resource")]
+    public TMP_Text txt_Money;
+    public TMP_Text txt_Month;
+
+    [Space(10), Header("Choice")]
+    public TMP_Text txt_ChoiceBnt1;
+    public TMP_Text txt_ChoiceBnt2;
+    public TMP_Text txt_ChoiceBnt3;
+    public TMP_Text txt_ChoiceBnt4;
+
 
 
     public List< GameObject > Uis = new List< GameObject >();
@@ -41,9 +52,7 @@ public class UIManager : MonoBehaviour
 
     // 요약 리포트 띄우기
 
-
     // 선택 버튼 업데이트 하기
-
 
     // 돈 계산하기
 
@@ -51,6 +60,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateSummary(string Title, string Choice, string Reason)
     {
+        summaryReport_Obj.SetActive(true);
         txt_summaryTitle.text = Title;
         txt_summaryChoice.text = Choice;
         txt_summaryReason.text = Reason;
@@ -80,6 +90,20 @@ public class UIManager : MonoBehaviour
         // 자세한 내용 업로드
         txt_FullTextMini.text = mini;
         txt_FullTextMain.text = main;
+    }
+
+    public void UpdateResource(float money, int month)
+    {
+        txt_Money.text = money.ToString("F2");
+        txt_Month.text = month.ToString();
+    }
+
+    public void UpdateChoice(List<string> choice)
+    {
+        txt_ChoiceBnt1.text = choice[0];
+        txt_ChoiceBnt2.text = choice[1];
+        txt_ChoiceBnt3.text = choice[2];
+        txt_ChoiceBnt4.text = choice[3];
     }
 
 }

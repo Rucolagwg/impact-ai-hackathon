@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
 
         _currentEventnum++;
-
+        UIManager.Instance.AllUIOff();
         print($"--------{_currentEventnum} NextEvent--------");
 
 
@@ -150,6 +150,11 @@ public class GameManager : MonoBehaviour
         print("End∞‘¿” »£√‚ µ ");
     }
 
+
+    public void RecordPreviousChoice(int num)
+    {
+        priousChoiceNumber = num;
+    }
 
 
 

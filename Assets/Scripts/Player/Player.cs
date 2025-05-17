@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public Animator animator;
 
 
@@ -19,6 +26,26 @@ public class Player : MonoBehaviour
     {
         animator.SetTrigger("Defeat");
     }
+
+
+    public void ChangeAni(float value)
+    {
+
+        if(value > 0)
+        {
+            Ani_Victory();
+        }
+        else if(value < 0)
+        {
+            Ani_Defeat();
+        }
+        else
+        {
+
+        }
+
+    }
+
 
 
 }
