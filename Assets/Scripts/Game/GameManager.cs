@@ -12,16 +12,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // 인스턴스가 없으면 자신을 할당
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 이동 시 파괴되지 않음
-        }
-        else
-        {
-            Destroy(gameObject); // 중복 인스턴스는 제거
-        }
+        Instance = this;
     }
 
 
@@ -39,16 +30,11 @@ public class GameManager : MonoBehaviour
     private int _currentEventnum = 0;
     public int currentEventNum { get { return _currentEventnum; } private set { _currentEventnum = value;  } }
 
+    public int priousChoiceNumber = 0;
+
     //돈
     public float Money = 1000000;
 
-
-    // txt 돈
-    [SerializeField]
-    TMP_Text txt_Money;
-
-    [SerializeField]
-    TMP_Text txt_Month;
 
 
     // 예: 게임 초기화
@@ -164,19 +150,7 @@ public class GameManager : MonoBehaviour
         print("End게임 호출 됨");
     }
 
-    public void UpdateUIInfo()
-    {
 
-        if(txt_Money != null)
-        {
-            txt_Money.text = Money.ToString("F2");
-        }
-
-        if (txt_Month != null)
-        {
-            txt_Month.text = $"Month : {currentEventNum}";
-        }
-    }
 
 
 }

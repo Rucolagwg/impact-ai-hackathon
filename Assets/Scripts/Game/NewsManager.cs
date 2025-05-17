@@ -7,6 +7,14 @@ public class NewsManager : MonoBehaviour
 
     public List<NewsItem> gameNewsList;
 
+    // 싱글톤 인스턴스
+    public static NewsManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         LoadNewsData();
@@ -55,6 +63,26 @@ public class NewsManager : MonoBehaviour
 
         // 앞에서 12개 자르기
         return shuffled.GetRange(0, count);
+    }
+
+    [ContextMenu("Update Dummy Summary")]
+    public void UpdateDummyNewsToSummary()
+    {
+        // 테스트 삭제해
+        NewsItem ni = gameNewsList[0];
+
+        UIManager.Instance.UpdateSummary(ni.title, ni.choices[0], ni.reasons[0]);
+
+    }
+
+    [ContextMenu("Update Dummy Upper")]
+    public void UpdateDummyUpper()
+    {
+        // 테스트 삭제해
+        NewsItem ni = gameNewsList[0];
+
+        UIManager.Instance.UpdateUpper(ni.title, ni.summary);
+
     }
 
 }
