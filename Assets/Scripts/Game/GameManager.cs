@@ -27,6 +27,12 @@ public class GameManager : MonoBehaviour
 
     public Fade fade;
 
+    List<EventBase> eventBases = new List<EventBase>();
+    bool gameEnd = false;
+
+
+    EventBase currentBase = null;
+
     // 0번 튜토리얼 1~12 이벤트 
     private int _currentEventnum = 0;
     public int currentEventNum { get { return _currentEventnum; } private set { _currentEventnum = value;  } }
@@ -34,60 +40,71 @@ public class GameManager : MonoBehaviour
     // 예: 게임 초기화
     private void Start()
     {
-        StartGame();
-    }
-
-    void StartGame()
-    {
-
-
-
+        Setup();
         NextEvent();
     }
 
-    void NextEvent()
+    private void Update()
     {
-        if (currentEventNum == 0)
+        if(currentBase != null)
         {
-            //튜토리얼 함수
-            EventTutorial();
-            print("튜토리얼 함수 실행!");
+            currentBase.Execute(this);
         }
-        else if (currentEventNum > 12)
+    }
+
+
+    public void NextEvent()
+    {
+        if (gameEnd)
+            return;
+
+        _currentEventnum++;
+        
+        
+        if(currentEventNum >= eventBases.Count )
         {
-            // 게임종료 함수
-            EventGameEnd();
-            print("게임 종료 함수 실행!");
+            //
+            EndGame();
+            gameEnd = true;
             return;
         }
 
+        if (currentBase != null)
+            currentBase.Exit(this);
+
+        currentBase = eventBases[_currentEventnum];
+        currentBase.Enter(this);
 
 
-        //Fade Out : 어두워짐
-        fade.FadeOut();
 
-
-
-        //FadeIN : 밝아짐
-        fade.FadeIN();
     }
 
-    // 튜토리얼 함수
-    void EventTutorial()
+    void Setup()
+    {
+        // 이벤트 베이스 리스트 셋업
+
+        for(int i = 0; i < this.transform.childCount; i++)
+        {
+            EventBase _base = this.transform.GetChild(i).GetComponent<EventBase>();
+
+
+            if(_base != null)
+            {
+                eventBases.Add(_base);
+
+            }
+            else
+            {
+                print($"{this.transform.GetChild(i).name} 에 EventBase가 없음");
+            }
+        }
+
+
+
+    }
+
+    void EndGame()
     {
 
-
-        currentEventNum++;
-        NextEvent();
-
     }
-
-    // 게임 종료 함수
-    void EventGameEnd()
-    {
-
-        
-
-    }
-
 }

@@ -30,9 +30,14 @@ public class Fade : MonoBehaviour
 
     public IEnumerator eFadeIN()
     {
+        Txt_Fade.gameObject.SetActive(true);
+        FadeImg.DOFade(0f, fadeTime).SetEase(ease_Fade);
+        Txt_Fade.DOFade(0f, fadeTime).SetEase(ease_Fade).OnComplete(() => {
+            Txt_Fade.gameObject.SetActive(false);
 
+        });
 
-        yield return null;
+        yield return new WaitForSeconds(fadeTime+0.1f);
     }
 
     [ContextMenu("FadeOut")]
@@ -45,5 +50,17 @@ public class Fade : MonoBehaviour
 
         }); ;
 
+    }
+
+    public IEnumerator eFadeOut()
+    {
+        FadeImg.DOFade(1f, fadeTime).SetEase(ease_Fade);
+        Txt_Fade.DOFade(1f, fadeTime).SetEase(ease_Fade).OnComplete(() => {
+            Txt_Fade.gameObject.SetActive(true);
+            Txt_Fade.DOFade(1f, 1f).SetEase(ease_Fade);
+
+        }); ;
+
+        yield return new WaitForSeconds(fadeTime +1f + 0.1f);
     }
 }
