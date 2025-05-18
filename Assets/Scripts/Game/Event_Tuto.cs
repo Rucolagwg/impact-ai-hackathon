@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DarkTonic.MasterAudio;
 
 public class Event_Tuto : EventBase
 {
@@ -10,6 +11,7 @@ public class Event_Tuto : EventBase
 
     public override void Enter(GameManager gm)
     {
+        MasterAudio.PlaySound("MainBGM");
         print("튜토리얼 이벤트 시작");
     }
 

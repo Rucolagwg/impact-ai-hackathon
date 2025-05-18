@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DarkTonic.MasterAudio;
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [ContextMenu("Victory")]
     public void Ani_Victory()
     {
+        MasterAudio.PlaySound("Victory");
         animator.SetTrigger("Victory");
     }
 
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     [ContextMenu("Defeat")]
     public void Ani_Defeat()
     {
+        MasterAudio.PlaySound("Defeat");
         animator.SetTrigger("Defeat");
     }
 

@@ -94,8 +94,8 @@ public class UIManager : MonoBehaviour
 
     public void UpdateResource(float money, int month)
     {
-        txt_Money.text = money.ToString("F2");
-        txt_Month.text = month.ToString();
+        txt_Money.text = money.ToString("F2") + " ¿ø";
+        txt_Month.text = month.ToString() + " ¿ù";
     }
 
     public void UpdateChoice(List<string> choice)
