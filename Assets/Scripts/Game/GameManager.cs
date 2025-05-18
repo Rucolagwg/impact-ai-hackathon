@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,7 +36,8 @@ public class GameManager : MonoBehaviour
     //돈
     public float Money = 1000000;
 
-
+    public string HappyEndingSceneName = "";
+    public string BadEndingSceneName = "";
 
     // 예: 게임 초기화
     private void Start()
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour
         
 
 
-        if (currentEventNum >= eventBases.Count)
+        if (currentEventNum > eventBases.Count)
         {
             //
             EndGame();
@@ -145,9 +147,22 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void EndGame()
+    IEnumerator EndGame()
     {
+        // fade
         print("End게임 호출 됨");
+
+        yield return StartCoroutine(fade.eTutoFadeOut());
+
+        if(Money > 10000000f)
+        {
+            SceneManager.LoadScene(HappyEndingSceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene(BadEndingSceneName);
+        }
+
     }
 
 
