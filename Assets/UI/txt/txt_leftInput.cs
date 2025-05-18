@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using DarkTonic.MasterAudio;
 using TMPro;
 using UnityEngine.UI; // Button을 사용하기 위해 추가
 
@@ -58,6 +59,7 @@ public class txt_leftInput : MonoBehaviour
         if (!string.IsNullOrEmpty(userInput))
         {
             chatBot.OnSendEnter(userInput);
+            MasterAudio.PlaySound("button Click");
             // outputDisplay.SetText(botResponse);
             inputField.text = "";
 
