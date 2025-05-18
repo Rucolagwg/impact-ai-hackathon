@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DarkTonic.MasterAudio;
+using DG.Tweening;
 
 public class Event_Tuto : EventBase
 {
@@ -12,7 +13,12 @@ public class Event_Tuto : EventBase
     public override void Enter(GameManager gm)
     {
         MasterAudio.PlaySound("MainBGM");
-        print("튜토리얼 이벤트 시작");
+
+        DOVirtual.DelayedCall(4f, () =>
+        {
+            gm.NextEvent();
+        });
+        print("???????? ?????? ????");
     }
 
     public override void Execute(GameManager gm)
@@ -23,7 +29,7 @@ public class Event_Tuto : EventBase
 
     public override void Exit(GameManager gm)
     {
-        print("튜토리얼 이벤트 끝");
+        print("???????? ?????? ??");
         StartCoroutine(gm.fade.eFadeOut());
     }
 }
