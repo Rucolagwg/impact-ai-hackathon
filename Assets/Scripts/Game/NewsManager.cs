@@ -38,7 +38,7 @@ public class NewsManager : MonoBehaviour
         }
     }
 
-    public List<NewsItem> GetRandomNewsItems(int count = 12)
+    public List<NewsItem> GetRandomNewsItems(int count = 15)
     {
         // 방어 코드: 리스트가 null이거나 항목이 부족하면 그대로 반환
         if (newsItems == null || newsItems.Count <= count)

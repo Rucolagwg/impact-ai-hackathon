@@ -19,8 +19,7 @@ public class GameManager : MonoBehaviour
 
     public Fade fade;
 
-    [SerializeField]
-    List<EventBase> eventBases = new List<EventBase>();
+    public List<EventBase> eventBases = new List<EventBase>();
     bool gameEnd = false;
 
     [SerializeField]
@@ -76,11 +75,12 @@ public class GameManager : MonoBehaviour
         
 
 
-        if (currentEventNum > eventBases.Count)
+        if (currentEventNum >= eventBases.Count)
         {
             //
-            EndGame();
-            gameEnd = true;
+            
+            StartCoroutine( EndGame() );
+            
             yield return null;
         }
         else if(currentEventNum == 1)
@@ -147,21 +147,31 @@ public class GameManager : MonoBehaviour
 
     }
 
-    IEnumerator EndGame()
+    public IEnumerator EndGame()
     {
-        // fade
-        print("End°ÔÀÓ È£Ãâ µÊ");
 
-        yield return StartCoroutine(fade.eTutoFadeOut());
+        if(!gameEnd)
+        {
+            yield return StartCoroutine(fade.eTutoFadeOut()); 
 
-        if(Money > 10000000f)
-        {
-            SceneManager.LoadScene(HappyEndingSceneName);
+
+            gameEnd = true;
+            // fade
+            print("End°ÔÀÓ È£Ãâ µÊ");
+
+            yield return StartCoroutine(fade.eTutoFadeOut());
+
+            if (Money > 10000000f)
+            {
+                SceneManager.LoadScene(HappyEndingSceneName);
+            }
+            else
+            {
+                SceneManager.LoadScene(BadEndingSceneName);
+            }
         }
-        else
-        {
-            SceneManager.LoadScene(BadEndingSceneName);
-        }
+
+        
 
     }
 

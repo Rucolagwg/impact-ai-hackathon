@@ -13,11 +13,15 @@ public class Player : MonoBehaviour
 
     public Animator animator;
 
+    public ParticleSystem ptc_Victory;
+    public ParticleSystem ptc_Defeat;
+
 
     [ContextMenu("Victory")]
     public void Ani_Victory()
     {
         MasterAudio.PlaySound("Victory");
+        ptc_Victory.Play();
         animator.SetTrigger("Victory");
     }
 
@@ -26,6 +30,7 @@ public class Player : MonoBehaviour
     public void Ani_Defeat()
     {
         MasterAudio.PlaySound("Defeat");
+        ptc_Defeat.Play();
         animator.SetTrigger("Defeat");
     }
 
