@@ -11,6 +11,7 @@ public class Prologue : MonoBehaviour
 
     public GameObject FadePanel;
 
+    [SerializeField]
     int currentNum = 0;
 
     public void Next()
@@ -18,7 +19,9 @@ public class Prologue : MonoBehaviour
 
         if(currentNum >= panels.Count)
         {
+            print("End 함수 실행 (프롤로그)");
            StartCoroutine( End() );
+            return;
         }
         else
         {
@@ -36,16 +39,19 @@ public class Prologue : MonoBehaviour
 
             }
 
-            currentNum++;
+            
         }
+        currentNum++;
 
-        
+
 
     }
 
 
     IEnumerator End()
     {
+
+        FadePanel.SetActive(true);
 
         yield return new WaitForSeconds(2f);
 
