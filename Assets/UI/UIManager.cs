@@ -50,13 +50,13 @@ public class UIManager : MonoBehaviour
         
     }
 
-    // 요약 리포트 띄우기
+    // ???? ?????? ??????
 
-    // 선택 버튼 업데이트 하기
+    // ???? ???? ???????? ????
 
-    // 돈 계산하기
+    // ?? ????????
 
-    // 돈 , 시간 업데이트 하기
+    // ?? , ???? ???????? ????
 
     public void UpdateSummary(string Title, string Choice, string Reason)
     {
@@ -84,18 +84,18 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUpper(string mini, string main)
     {
-        // 요약 제목 올리기
+        // ???? ???? ??????
         txt_NewsHeaderMini.text = mini;
 
-        // 자세한 내용 업로드
+        // ?????? ???? ??????
         txt_FullTextMini.text = mini;
         txt_FullTextMain.text = main;
     }
 
     public void UpdateResource(float money, int month)
     {
-        txt_Money.text = money.ToString("F2") + " 원";
-        txt_Month.text = month.ToString() + " 월";
+        txt_Money.text = money.ToString() + " $";
+        txt_Month.text = month.ToString() + " month";
     }
 
     public void UpdateChoice(List<string> choice)
