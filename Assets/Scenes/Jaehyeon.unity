@@ -919,45 +919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'd
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d
-
-    d'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1061276cde5b04361b09df8bf1a3cb7b, type: 2}
   m_sharedMaterial: {fileID: 9100913149319463990, guid: 1061276cde5b04361b09df8bf1a3cb7b, type: 2}
@@ -2993,6 +2955,12 @@ MonoBehaviour:
   txt_NewsHeaderMini: {fileID: 1718887237}
   txt_FullTextMini: {fileID: 1523132810}
   txt_FullTextMain: {fileID: 789676682}
+  txt_Money: {fileID: 0}
+  txt_Month: {fileID: 0}
+  txt_ChoiceBnt1: {fileID: 0}
+  txt_ChoiceBnt2: {fileID: 0}
+  txt_ChoiceBnt3: {fileID: 0}
+  txt_ChoiceBnt4: {fileID: 0}
   Uis:
   - {fileID: 1605691999}
   - {fileID: 127226361}
@@ -8443,6 +8411,7 @@ GameObject:
   - component: {fileID: 1242152421}
   - component: {fileID: 1242152420}
   - component: {fileID: 1242152424}
+  - component: {fileID: 1242152425}
   m_Layer: 5
   m_Name: txt_left
   m_TagString: Untagged
@@ -8606,8 +8575,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7470b8a8d24a444c19cbe7ed791beab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textComponent: {fileID: 0}
-  scrollRect: {fileID: 0}
+  textComponent: {fileID: 1242152422}
+  scrollRect: {fileID: 1695792148}
+--- !u!114 &1242152425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242152418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378b523ca7652af43a21f963607cb419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userInputField: 
+  lefttxt: {fileID: 0}
 --- !u!1001 &1257960996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13907,8 +13890,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1748484477}
   m_HandleRect: {fileID: 1748484476}
   m_Direction: 2
-  m_Value: 0.99999744
-  m_Size: 0.6024343
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
