@@ -1,2 +1,2 @@
-# Impact_Hackathon
+# Impact_AI_Hackathon
 
