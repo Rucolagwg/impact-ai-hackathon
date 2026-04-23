@@ -70,3 +70,4 @@ Developed during the **GDGoC GIST Impact AI Hackathon**, this project is an AI-p
 *   **HuiJung (Unity)**
 *   **SungHoon (AI)**
 *   **Seulgi (Design)**
+*   **Jaehyeon (Unity)**
